@@ -12,4 +12,9 @@ class Course extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    // get virtual field
+    public function getExcerptAttribute() {
+        return substr($this->description, 0, 80) . '...';
+    }
 }

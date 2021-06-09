@@ -58,4 +58,25 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Add Avatar.
+     * 
+     * Use `d` argument to change Gravatars default placeholders. Among the options are:
+     *  - 404
+     *  - mp
+     *  - identicon
+     *  - monsterid
+     *  - wavatar
+     *  - retro
+     *  - robohash
+     *  - blank
+     */
+    public function getAvatarAttribute() {
+        // get email field and encrypt it to MD5
+        $email = md5($this->email);
+
+        // using Gravatar
+        return "https://www.gravatar.com/avatar/$email?d=robohash";
+    }
 }
